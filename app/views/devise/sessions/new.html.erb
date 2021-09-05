@@ -1,0 +1,35 @@
+<div class="container">
+   <div class="row">
+    <div class="col-lg-4">
+<h2>Log in</h2>
+
+<!--メールアドレスからパスワードに変更すること-->
+
+<%= form_with model: @user, url: user_session_path, local: true do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Log in", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+<!--リンクの色が変わらない-->
+ </div>
+  </div>
+   </div>

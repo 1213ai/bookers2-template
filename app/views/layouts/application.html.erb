@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers3</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="https://kit.fontawesome.com/029ff23b52.js" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="shadow-sm bg-dark mb-3">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+    <h5 class="my-0 mr-md-auto font-weight-normal text-white"><%= link_to 'Bookers', root_path %></h5>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+
+        <% if user_signed_in? %>
+
+        <li class="nav-item p-2 ">
+          <%= link_to user_path(current_user.id) do %>
+          <i class="fas fa-home">Home</i>
+        <% end %>
+        </li>
+
+        <li class="nav-item p-2">
+         <%= link_to users_path do %>
+         <i class="fas fa-users ">Users</i>
+         <% end %>
+        </li>
+
+        <li class="nav-item p-2">
+          <%= link_to books_path do %>
+          <i class="fas fa-book-open">Books</i>
+         <% end %>
+        </li>
+
+        <li class="nav-item p-2">
+         <%= link_to destroy_user_session_path, method: :delete do %>
+         <i class="fas fa-sign-out-alt">logout</i>
+         <% end %>
+        </li>
+
+        <% else %>
+        <li class="nav-item p-2">
+         <%= link_to root_path do %>
+         <i class="fas fa-home">Home</i>
+         <% end %>
+        </li>
+
+        <li class="nav-item p-2">
+         <%= link_to '/home/about' do %>
+         <i class="fas fa-link">About</i>
+         <% end %>
+        </li>
+
+        <li class="nav-item p-2">
+         <%= link_to new_user_registration_path do %>
+         <i class="fas fa-user-plus">sign up</i>
+         <% end %>
+        </li>
+
+        <li class="nav-item p-2">
+         <%= link_to new_user_session_path do %>
+         <i class="fas fa-sign-in-alt">login</i>
+         <% end %>
+        </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+     <% flash.each do |key, value| %>
+  <%= content_tag(:div, value) %>
+<% end %>
+  <%= yield %>
+  </body>
+  <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+          </div>
+      </div>
+    </footer>
+  </body>
+
+</html>

@@ -1,0 +1,14 @@
+<div class ="book-new">
+   <h2 class="mt-3 my-3">New book</h2>
+    <%= form_with model: book,url:'/books', local: true do |f| %>
+     <h7>Title</h7>
+       <div class="form-group mt-2" >
+          <%= f.text_field :title, class: 'form-control' %>
+       </div>
+     <h7>Opinion</h7>
+        <div class="form-group mt-2" >
+          <%= f.text_area :body, class: 'form-control' %>
+        </div>
+     <div><%= f.submit 'Create Book', class:"btn btn-success" %></div>
+    <% end %>
+</div>
